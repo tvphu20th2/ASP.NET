@@ -188,5 +188,41 @@ namespace mvc.Controllers
         {
             return View();
         }
+
+        // GET: Searching
+
+        [HttpGet]
+        public async Task<IActionResult> Index(string Empseach, string sortOrder, string currentFilter, int? page)
+        {
+
+            var models = _context.Product.AsQueryable();
+            ViewData["Gatemployeedetails"] = Empseach;
+            var empquery = from x in _context.Product select x;
+            if (!string.IsNullOrEmpty(Empseach))
+            {
+                empquery = empquery.Where(x => x.Name.Contains(Empseach) || x.Manufacturer.Contains(Empseach));
+            }
+            return View(await empquery.AsNoTracking().ToListAsync());
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+            var products = from s in _context.Product
+                           select s;
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    products = products.OrderByDescending(s => s.Name);
+                    break;
+                case "Date":
+                    products = products.OrderBy(s => s.Manufacturer);
+                    break;
+                case "date_desc":
+                    products = products.OrderByDescending(s => s.Manufacturer);
+                    break;
+                default:
+                    products = products.OrderBy(s => s.Name);
+                    break;
+            }
+            return View(products.ToList());
+        }
     }
 }

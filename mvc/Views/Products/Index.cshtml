@@ -9,6 +9,14 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+<form method="get" asp-action="Index">
+    <p>
+
+        <input type="text" placeholder="Nhập tên hoặc hãng sản xuất bạn cần tìm...?" value="@ViewData["Gatemployeedetails"]" name="Empseach" style="width:500px; height:33px;" />
+        <input type="submit" value="Tìm" class="btn btn-info" />
+        <a class="btn btn-outline-info" asp-action="Index">Get all Products</a>
+    </p>
+</form>
 <table class="table">
     <thead>
         <tr>

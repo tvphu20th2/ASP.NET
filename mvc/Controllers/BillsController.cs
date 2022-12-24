@@ -149,5 +149,41 @@ namespace mvc.Controllers
         {
             return _context.Bill.Any(e => e.BillId == id);
         }
+
+        // GET: Searching
+
+        [HttpGet]
+        public async Task<IActionResult> Index(string Empseach, string sortOrder, string currentFilter, int? page)
+        {
+
+            var models = _context.Bill.AsQueryable();
+            ViewData["Gatemployeedetails"] = Empseach;
+            var empquery = from x in _context.Bill select x;
+            if (!string.IsNullOrEmpty(Empseach))
+            {
+                empquery = empquery.Where(x => x.CustomerName.Contains(Empseach) || x.CustomerPhone.Contains(Empseach));
+            }
+            return View(await empquery.AsNoTracking().ToListAsync());
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+            var bills = from s in _context.Bill
+                           select s;
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    bills = bills.OrderByDescending(s => s.CustomerName);
+                    break;
+                case "Date":
+                    bills = bills.OrderBy(s => s.CustomerPhone);
+                    break;
+                case "date_desc":
+                    bills = bills.OrderByDescending(s => s.CustomerPhone);
+                    break;
+                default:
+                    bills = bills.OrderBy(s => s.CustomerName);
+                    break;
+            }
+            return View(bills.ToList());
+        }
     }
 }

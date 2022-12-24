@@ -13,72 +13,50 @@
     <!-- Carousel -->
     <div id="demo" class="carousel slide" data-bs-ride="carousel">
 
-        <!-- Indicators/dots -->
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
-            <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
-            <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
-            <button type="button" data-bs-target="#demo" data-bs-slide-to="3"></button>
-        </div>
-
-        <!-- The slideshow/carousel -->
+        
+        <!-- carousel -->
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="~/images/carousel/B1.png" alt="Chất lượng" class="d-block w-25">
+                <img src="~/images/carousel/banner-khuyen-m_984_1920.png.webp" 
+                     alt="Chất lượng" class="d-block w-100" />
+               
             </div>
-            <div class="carousel-item">
-                <img src="~/images/carousel/B2.png" alt="Đúng giá" class="d-block w-25">
+         </div>
+    </div>
+            <nav class="navbar navbar-expand-sm bg-primary navbar-dark ">
+                <div class="container">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="navbar-brand" asp-controller="Home" asp-action="Index">Trang chủ</a>
+                        </li>
+               
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Products" asp-action="Index">Quản lý</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Home" asp-action="ViewCart">Giỏ hàng</a>
+                        </li>
+
+                    </ul>
+                    <form class="d-flex">
+                        <input class="form-control-me-2" type="text" placeholder="Nhập tên hoặc hãng sản xuất ...?" value="@ViewData["Gatemployeedetails"]" name="Empseach" style="width:350px; height:40px;" />
+                        <input class="btn btn-danger" type="submit" value="Tìm" />
+                    </form>
+                </div>
+
+
+            </nav>
+
+            <div class="container">
+                <main role="main" class="pb-3">
+                    @RenderBody()
+                </main>
             </div>
-            <div class="carousel-item">
-                <img src="~/images/carousel/B4.png" alt="Thông minh" class="d-block w-25">
+
+            <div class="mt-5 p-4 bg-dark text-white text-center">
+                <p>Website Bán Điện Thoại - 2022</p>
+                <p>Tạ Văn Phú - DTH195338 </p>
             </div>
-        </div>
-
-        <!-- Left and right controls/icons -->
-        <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon"></span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
-            <span class="carousel-control-next-icon"></span>
-        </button>
-    </div>
-
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark ">
-        <div class="container">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="navbar-brand" asp-controller="Home" asp-action="Index">Tạ Văn Phú</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" asp-controller="Home" asp-action="Index">Sản phẩm</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" asp-controller="Products" asp-action="Index">Quản lý</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" asp-controller="Home" asp-action="ViewCart">Giỏ hàng</a>
-                </li>
-            </ul>
-          
-            <ul class="navbar-nav">
-                <li class=" nav-item form-group form-inline">
-                    <div><input type="text" name="strSearch" placeholder="Nhập từ khóa" class="form-control form-inline" /></div>
-                </li>
-                <li><div><input type="submit" name="submitSearch" value="Tìm Kiếm" class="form-control" /></div></li>
-            </ul>
-        </div>
-    </nav>
-
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-
-    <div class="mt-5 p-4 bg-dark text-white text-center">
-        <p>Website Bán Điện Thoại - 2022</p>
-        <p>Tạ Văn Phú - DTH195338 </p>
-    </div>
 
 
 </body>
